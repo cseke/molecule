@@ -18,6 +18,8 @@
 #  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 #  DEALINGS IN THE SOFTWARE.
 
+import os
+
 import pytest
 import sh
 
@@ -39,6 +41,16 @@ def test_command_create(with_scenario):
 def test_command_destroy(with_scenario):
     sh.molecule('destroy')
 
+
+def test_command_init_role(temp_dir):
+    role_directory = os.path.join(temp_dir.strpath, 'test-init')
+    sh.molecule('init', 'role', '--role-name', 'test-init')
+    os.chdir(role_directory)
+
+    sh.molecule('test')
+
+# TODO(retr0h): Error if role dir already exists.
+# TODO(retr0h): Error if scenario dir already exists.
 
 @pytest.mark.parametrize(
     'with_scenario', ['docker'], indirect=['with_scenario'])

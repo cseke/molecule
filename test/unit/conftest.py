@@ -19,32 +19,11 @@
 #  DEALINGS IN THE SOFTWARE.
 
 import os
-import os.path
-import random
-import shutil
-import string
 
 import pytest
 import yaml
 
 from molecule import config
-
-
-def random_string(l=5):
-    return ''.join(random.choice(string.ascii_uppercase) for _ in range(l))
-
-
-@pytest.fixture()
-def temp_dir(tmpdir, request):
-    directory = tmpdir.mkdir(random_string())
-    os.chdir(directory.strpath)
-
-    def cleanup():
-        shutil.rmtree(directory.strpath)
-
-    request.addfinalizer(cleanup)
-
-    return directory
 
 
 @pytest.fixture

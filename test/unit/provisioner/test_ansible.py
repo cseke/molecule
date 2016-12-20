@@ -44,6 +44,10 @@ def test_converge(ansible_instance, patched_ansible_playbook,
                                                      ansible_instance._config)
     patched_ansible_playbook_execute.assert_called_once
 
+    #  subcommand = self._config.command_args.get('subcommand')
+    #  if subcommand and subcommand == 'molecule.command.init':
+    #      return
+
 
 def test_write_inventory(temp_dir, ansible_instance):
     ansible_instance.write_inventory()
