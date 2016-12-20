@@ -2,6 +2,13 @@
 History
 *******
 
+1.17.1
+======
+
+* Correct ansible-lint exit error when role dependency is in newer dictionary
+  format.
+* Pass env to `ansible-lint`.
+
 1.17
 ====
 
